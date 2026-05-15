@@ -114,6 +114,7 @@ from app.adapter.handler import (
     order_handler,
     message_handler,
     review_handler,
+    review_export,
     file_handler,
     network_handler,
     template_handler,
@@ -352,6 +353,7 @@ def create_app() -> Flask:
     file_handler.init(file_service, external_request_service, system_command_service, cfg.files_dir, cfg.upload_dir)
     message_handler.init(content_service)
     review_handler.init(content_service)
+    review_export.init(content_service)
     xml_handler.init(xml_processing_service)
     deserialize_handler.init(serialization_service)
     template_handler.init(notification_service)
@@ -377,6 +379,7 @@ def create_app() -> Flask:
     app.register_blueprint(order_handler.bp)
     app.register_blueprint(message_handler.bp)
     app.register_blueprint(review_handler.bp)
+    app.register_blueprint(review_export.bp)
     app.register_blueprint(file_handler.bp)
     app.register_blueprint(network_handler.bp)
     app.register_blueprint(template_handler.bp)
